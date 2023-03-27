@@ -6,7 +6,13 @@
 
   <groupId>ru.imposya</groupId>
   <artifactId>pet-project</artifactId>
+  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
+
+  <modules>
+    <module>customer</module>
+    <module>fraud</module>
+  </modules>
 
   <name>pet-project</name>
   <url>https://vk.com/imposya</url>
@@ -50,7 +56,6 @@
           <artifactId>spring-boot-maven-plugin</artifactId>
           <version>${spring.boot.maven.plugin.version}</version>
         </plugin>
-
       </plugins>
     </pluginManagement>
   </build>
