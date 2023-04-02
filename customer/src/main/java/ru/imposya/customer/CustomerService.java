@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ru.imposya.clients.fraud.FraudCheckResponse;
 import ru.imposya.clients.fraud.FraudClient;
+import ru.imposya.clients.notification.NotificationClient;
+import ru.imposya.clients.notification.NotificationRequest;
 
 @Service
 @AllArgsConstructor
@@ -14,6 +16,7 @@ public class CustomerService {
     private final RestTemplate restTemplate;
     private final CustomerRepository customerRepository;
     private final FraudClient fraudClient;
+    private final NotificationClient notificationClient;
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -28,5 +31,13 @@ public class CustomerService {
         if (response != null && response.isFraudster()) {
             throw new IllegalStateException("fraudster!");
         }
+
+        notificationClient.sendNotification(
+                new NotificationRequest(
+                        customer.getId(),
+                        customer.getEmail(),
+                        String.format("Hi %s, welcome to my petproject!", customer.getFirstName())
+                )
+        );
     }
 }
