@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Entity
 public class FraudCheckHistory {
+
     @Id
     @SequenceGenerator(
             name = "fraud_id_sequence",

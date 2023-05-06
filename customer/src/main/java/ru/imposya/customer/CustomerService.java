@@ -12,7 +12,6 @@ import ru.imposya.clients.notification.NotificationRequest;
 @AllArgsConstructor
 public class CustomerService {
 
-
     private final RestTemplate restTemplate;
     private final CustomerRepository customerRepository;
     private final FraudClient fraudClient;
